@@ -3,6 +3,7 @@ package main
 import (
     "log"
     "os"
+    
 
     "github.com/nlopes/slack"
 )
@@ -19,8 +20,12 @@ func run(api *slack.Client) int {
                 log.Print("Hello Event")
 
             case *slack.MessageEvent:
+                
+                //timetableの処理
+                timeTable(ev, rtm)
+
                 log.Printf("Message: %v\n", ev)
-                rtm.SendMessage(rtm.NewOutgoingMessage("Hello world", ev.Channel))
+                // rtm.SendMessage(rtm.NewOutgoingMessage("Hello world", ev.Channel))
 
             case *slack.InvalidAuthEvent:
                 log.Print("Invalid credentials")
