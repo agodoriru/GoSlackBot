@@ -21,3 +21,7 @@ func getApiToken()(string) {
 ```
 $ go run *.go
 ```
+
+
+ref
+https://kuroeveryday.blogspot.jp/2017/10/tutorial-slack-rtm-api-with-golang.html
