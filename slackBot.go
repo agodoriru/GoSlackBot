@@ -1,6 +1,7 @@
 package main
 
 import (
+	// "fmt"
     "log"
     "strings"
     // "os"
@@ -59,6 +60,8 @@ func main() {
 
         case *slack.MessageEvent:
 
+        	log.Printf("Message:%v\n",ev)
+
             // test case
             if strings.HasPrefix(ev.Text,"test") {
             
@@ -73,7 +76,17 @@ func main() {
                 setClassroom(ev, rtm)
 
             }else{
-                showClassroom(ev, rtm)
+
+            	//date & classroom not set
+            	if date == "" && classroom == "" {
+    
+            		rtm.SendMessage(rtm.NewOutgoingMessage("次回の活動日の設定がされていません。",ev.Channel))
+    
+            	}else {
+	
+	                showClassroom(ev, rtm)
+
+            	}
 
             }
 
